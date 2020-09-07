@@ -6,7 +6,7 @@ export class CurrencyConverter {
   @observable currencies: string[] = [];
   rates = new Map<string, number>();
 
-  async load() {
+  async load(): Promise<void> {
     const result = await (await fetch('https://api.exchangeratesapi.io/latest?base=CAD')).json();
     runInAction(() => {
       this.base = result.base;
@@ -18,7 +18,7 @@ export class CurrencyConverter {
     });
   }
 
-  convert(amount: number, currency: string) {
+  convert(amount: number, currency: string): number {
     const coeff = this.rates.get(currency);
     if (coeff === undefined) throw new Error('Could not determine currency');
     return amount * coeff;

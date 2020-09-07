@@ -5,12 +5,12 @@ import { observer } from 'mobx-react';
 import { action, observable, toJS } from 'mobx';
 
 import './../assets/scss/App.scss';
-import { IKeyedReceipt } from './IKeyedReceipt';
 import { Store } from './Store';
 import { CurrencyConverter } from './CurrencyConverter';
 import { EntryForm } from './EntryForm';
 import { ReceiptRow } from './ReceiptRow';
 import { roundCurrency } from './roundCurrency';
+import { IKeyedReceipt } from './global';
 
 @observer
 class App extends React.Component {

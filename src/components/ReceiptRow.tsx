@@ -1,20 +1,21 @@
 import * as React from 'react';
 import { observer } from 'mobx-react';
 import { action } from 'mobx';
-import { IKeyedReceipt } from './IKeyedReceipt';
+import { IKeyedReceipt } from './global';
 import { roundCurrency } from './roundCurrency';
+
 @observer
 export class ReceiptRow extends React.Component<{
   receipt: IKeyedReceipt;
   onDelete: (receipt: IKeyedReceipt) => void;
 }> {
-  @action.bound handleDelete() {
+  @action.bound handleDelete(): void {
     if (confirm('Are you sure you want to delete this item?')) {
       this.props.onDelete(this.props.receipt);
     }
   }
 
-  public render() {
+  public render(): React.ReactNode {
     const { receipt } = this.props;
     const { description, amount, currency, cadAmount } = receipt;
     return (
